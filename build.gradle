@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.30-RC'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+allure {
+    version = '2.10.0'
+    autoconfigure = true
+    aspectjweaver = true
+}
+
+group 'com.oppabet'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+}
+
+dependencies {
+    implementation 'io.qameta.allure:allure-gradle:2.8.1'
+    implementation 'io.qameta.allure:allure-testng:2.13.8'
+    implementation 'io.qameta.allure:allure-selenide:2.13.8'
+    implementation 'org.slf4j:slf4j-simple:1.7.30'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'io.github.bonigarcia:webdrivermanager:4.3.0'
+    implementation "com.google.guava:guava:28.2-jre"
+    implementation('org.seleniumhq.selenium:selenium-java:3.141.59') { exclude group: "com.google.guava", module: "guava" }
+    implementation group: 'io.qameta.atlas', name: 'atlas-webdriver', version: '1.8.0'
+    implementation group: 'org.testng', name: 'testng', version: '7.3.0'
+    implementation 'org.aeonbits.owner:owner-java8:1.0.6'
+    implementation 'ru.yandex.qatools.matchers:webdriver-matchers:1.4.1'
+    implementation 'ru.yandex.qatools.matchers:matcher-decorators:1.4.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+test {
+    useTestNG()
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
